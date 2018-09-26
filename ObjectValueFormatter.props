@@ -1,0 +1,16 @@
+<Project>
+
+  <ItemGroup>
+    <Compile Remove="$(MSBuildThisFileDirectory)\..\vostok.commons.collections\Vostok.Commons.Collections\RecyclingBoundedCache.cs" Link="Commons\RecyclingBoundedCache.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)\..\vostok.commons.collections\Vostok.Commons.Collections\RecyclingBoundedCache.cs" Link="Commons\RecyclingBoundedCache.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)\Vostok.Commons.Formatting\DictionaryInspector.cs" Link="Commons\DictionaryInspector.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)\Vostok.Commons.Formatting\StringBuilderCache.cs" Link="Commons\StringBuilderCache.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)\Vostok.Commons.Formatting\ToStringDetector.cs" Link="Commons\ToStringDetector.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)\Vostok.Commons.Formatting\ObjectPropertiesExtractor.cs" Link="Commons\ObjectPropertiesExtractor.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)\Vostok.Commons.Formatting\ObjectValueFormatter.cs" Link="Commons\ObjectValueFormatter.cs" />
+  </ItemGroup>
+
+</Project>

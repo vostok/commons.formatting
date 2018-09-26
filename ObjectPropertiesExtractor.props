@@ -1,0 +1,12 @@
+<Project>
+
+  <ItemGroup>
+    <Compile Remove="$(MSBuildThisFileDirectory)\..\vostok.commons.collections\Vostok.Commons.Collections\RecyclingBoundedCache.cs" Link="Commons\RecyclingBoundedCache.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)\..\vostok.commons.collections\Vostok.Commons.Collections\RecyclingBoundedCache.cs" Link="Commons\RecyclingBoundedCache.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)\Vostok.Commons.Formatting\ObjectPropertiesExtractor.cs" Link="Commons\ObjectPropertiesExtractor.cs" />
+  </ItemGroup>
+
+</Project>
