@@ -20,6 +20,10 @@
     <Description>TODO</Description>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Compile Include="..\..\vostok.commons.collections\Vostok.Commons.Collections\RecyclingBoundedCache.cs" Link="Commons\RecyclingBoundedCache.cs" />
+  </ItemGroup>
+
   <PropertyGroup>
     <PackageProjectUrl>https://github.com/vostok/commons.formatting</PackageProjectUrl>
     <PackageLicenseUrl>https://github.com/vostok/commons.formatting/blob/master/LICENSE</PackageLicenseUrl>
