@@ -52,6 +52,14 @@ namespace Vostok.Commons.Formatting.Tests
                 .Equal(("A", "<error: 123>"));
         }
 
+        [Test]
+        public void Should_support_properties_that_differ_by_case_only()
+        {
+            ObjectPropertiesExtractor.ExtractProperties(new { A = 1, a = 2 })
+                .Should()
+                .BeEquivalentTo(("A", 1), ("a", 2));
+        }
+
         private class Container
         {
             public int A => 1;
