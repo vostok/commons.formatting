@@ -46,8 +46,8 @@ namespace Vostok.Commons.Formatting
                 {
                     var parameter = Expression.Parameter(typeof(object));
                     var convertedParameter = Expression.Convert(parameter, type);
-
-                    var property = Expression.Property(convertedParameter, properties[i].Name);
+                    
+                    var property = Expression.Property(convertedParameter, properties[i]);
                     var convertedProperty = Expression.Convert(property, typeof(object));
 
                     getters[i] = (properties[i].Name, Expression.Lambda<Func<object, object>>(convertedProperty, parameter).Compile());
