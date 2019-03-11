@@ -2,6 +2,9 @@
 using FluentAssertions;
 using NUnit.Framework;
 
+// ReSharper disable UnusedMember.Local
+#pragma warning disable 414
+
 namespace Vostok.Commons.Formatting.Tests
 {
     [TestFixture]
