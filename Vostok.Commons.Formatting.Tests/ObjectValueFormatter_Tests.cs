@@ -8,6 +8,8 @@ using FluentAssertions;
 using FluentAssertions.Extensions;
 using NUnit.Framework;
 
+// ReSharper disable UnusedAutoPropertyAccessor.Local
+
 namespace Vostok.Commons.Formatting.Tests
 {
     [TestFixture]
