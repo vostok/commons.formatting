@@ -40,13 +40,13 @@ namespace Vostok.Commons.Formatting
                     .Where(property => !property.GetIndexParameters().Any())
                     .ToArray();
 
-                var getters = new(string, Func<object, object>)[properties.Length];
+                var getters = new (string, Func<object, object>)[properties.Length];
 
                 for (var i = 0; i < properties.Length; i++)
                 {
                     var parameter = Expression.Parameter(typeof(object));
                     var convertedParameter = Expression.Convert(parameter, type);
-                    
+
                     var property = Expression.Property(convertedParameter, properties[i]);
                     var convertedProperty = Expression.Convert(property, typeof(object));
 
