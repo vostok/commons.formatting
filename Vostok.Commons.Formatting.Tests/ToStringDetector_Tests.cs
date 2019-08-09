@@ -47,7 +47,7 @@ namespace Vostok.Commons.Formatting.Tests
         [Test]
         public void HasCustomToString_should_return_false_on_anonymous_types()
         {
-            var value = new { A = 1, B = 2 };
+            var value = new {A = 1, B = 2};
 
             ToStringDetector.HasCustomToString(value.GetType()).Should().BeFalse();
         }
@@ -70,6 +70,10 @@ namespace Vostok.Commons.Formatting.Tests
             ToStringDetector.HasCustomToString(typeof(IFormattable)).Should().BeFalse();
         }
 
+        private enum EnumExample
+        {
+        }
+
         private class ReferenceTypeWithToString
         {
             public override string ToString() => string.Empty;
@@ -85,10 +89,6 @@ namespace Vostok.Commons.Formatting.Tests
         }
 
         private struct ValueTypeWithoutToString
-        {
-        }
-
-        private enum EnumExample
         {
         }
     }

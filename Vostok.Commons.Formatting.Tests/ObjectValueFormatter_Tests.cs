@@ -78,7 +78,6 @@ namespace Vostok.Commons.Formatting.Tests
             Format(value).Should().Be(value.ToString(CultureInfo.InvariantCulture));
         }
 
-
         [Test]
         public void Should_format_datetimeoffsets_with_tostring_and_invariant_culture()
         {
@@ -188,7 +187,7 @@ namespace Vostok.Commons.Formatting.Tests
         [Test]
         public void Should_format_flat_arrays_as_json_arrays()
         {
-            var value = new[] { 1, 2, 3 };
+            var value = new[] {1, 2, 3};
 
             Format(value).Should().Be("[\"1\", \"2\", \"3\"]");
         }
@@ -196,7 +195,7 @@ namespace Vostok.Commons.Formatting.Tests
         [Test]
         public void Should_format_flat_lists_as_json_arrays()
         {
-            var value = new List<int> { 1, 2, 3 };
+            var value = new List<int> {1, 2, 3};
 
             Format(value).Should().Be("[\"1\", \"2\", \"3\"]");
         }
@@ -212,7 +211,7 @@ namespace Vostok.Commons.Formatting.Tests
         [Test]
         public void Should_format_objects_with_public_properties_as_json_objects()
         {
-            var value = new { key1 = "value1", key2 = "value2" };
+            var value = new {key1 = "value1", key2 = "value2"};
 
             Format(value).Should().Be("{\"key1\": \"value1\", \"key2\": \"value2\"}");
         }
@@ -226,7 +225,7 @@ namespace Vostok.Commons.Formatting.Tests
         [Test]
         public void Should_format_nested_objects_with_public_properties_as_json_objects()
         {
-            var value = new { A = 1, B = new { C = 2, D = 3 } };
+            var value = new {A = 1, B = new {C = 2, D = 3}};
 
             Format(value).Should().Be("{\"A\": \"1\", \"B\": {\"C\": \"2\", \"D\": \"3\"}}");
         }
@@ -234,7 +233,7 @@ namespace Vostok.Commons.Formatting.Tests
         [Test]
         public void Should_format_nested_null_properties_explicitly_when_using_json_formatting()
         {
-            var value = new { A = 1, B = null as object };
+            var value = new {A = 1, B = null as object};
 
             Format(value).Should().Be("{\"A\": \"1\", \"B\": null}");
         }
@@ -242,7 +241,7 @@ namespace Vostok.Commons.Formatting.Tests
         [Test]
         public void Should_format_nested_properties_with_custom_tostring_when_using_json_formatting()
         {
-            var value = new { A = 1, B = new ClassWithToString() };
+            var value = new {A = 1, B = new ClassWithToString()};
 
             Format(value).Should().Be("{\"A\": \"1\", \"B\": \"123\"}");
         }
@@ -250,7 +249,7 @@ namespace Vostok.Commons.Formatting.Tests
         [Test]
         public void Should_format_nested_objects_with_depth_limit()
         {
-            var value = new { A = 1, B = new { C = 2, D = new { E = 3 } } };
+            var value = new {A = 1, B = new {C = 2, D = new {E = 3}}};
 
             Format(value).Should().Be("{\"A\": \"1\", \"B\": {\"C\": \"2\", \"D\": {\"E\": \"<too deep>\"}}}");
         }
@@ -270,7 +269,7 @@ namespace Vostok.Commons.Formatting.Tests
         [Test]
         public void Should_format_objects_with_nested_enumerables_as_json()
         {
-            var value = new { A = new[] { 1, 2 }, B = new[] { 3, 4 } };
+            var value = new {A = new[] {1, 2}, B = new[] {3, 4}};
 
             Format(value).Should().Be("{\"A\": [\"1\", \"2\"], \"B\": [\"3\", \"4\"]}");
         }
@@ -280,8 +279,8 @@ namespace Vostok.Commons.Formatting.Tests
         {
             var value = new
             {
-                A = new Dictionary<DayOfWeek, int> { [DayOfWeek.Friday] = 1 },
-                B = new Dictionary<DayOfWeek, int> { [DayOfWeek.Saturday] = 2 }
+                A = new Dictionary<DayOfWeek, int> {[DayOfWeek.Friday] = 1},
+                B = new Dictionary<DayOfWeek, int> {[DayOfWeek.Saturday] = 2}
             };
 
             Format(value).Should().Be("{\"A\": {\"Friday\": \"1\"}, \"B\": {\"Saturday\": \"2\"}}");
@@ -328,8 +327,8 @@ namespace Vostok.Commons.Formatting.Tests
         {
             var value = new Dictionary<int, int[]>
             {
-                [1] = new[] { 2, 2 },
-                [2] = new[] { 4, 4 }
+                [1] = new[] {2, 2},
+                [2] = new[] {4, 4}
             };
 
             Format(value).Should().Be("{\"1\": [\"2\", \"2\"], \"2\": [\"4\", \"4\"]}");
@@ -340,8 +339,8 @@ namespace Vostok.Commons.Formatting.Tests
         {
             var value = new Dictionary<int, object>
             {
-                [1] = new { A = null as string },
-                [2] = new { A = "value" }
+                [1] = new {A = null as string},
+                [2] = new {A = "value"}
             };
 
             Format(value).Should().Be("{\"1\": {\"A\": null}, \"2\": {\"A\": \"value\"}}");
@@ -352,8 +351,8 @@ namespace Vostok.Commons.Formatting.Tests
         {
             var value = new Dictionary<int, object>
             {
-                [1] = new Dictionary<string, object> { ["A"] = null },
-                [2] = new Dictionary<string, object> { ["A"] = "value" }
+                [1] = new Dictionary<string, object> {["A"] = null},
+                [2] = new Dictionary<string, object> {["A"] = "value"}
             };
 
             Format(value).Should().Be("{\"1\": {\"A\": null}, \"2\": {\"A\": \"value\"}}");
