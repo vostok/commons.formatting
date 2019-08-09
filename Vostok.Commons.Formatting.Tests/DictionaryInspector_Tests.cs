@@ -55,29 +55,32 @@ namespace Vostok.Commons.Formatting.Tests
         [Test]
         public void EnumerateSimpleDictionary_should_correctly_enumerate_an_ordinary_dictionary()
         {
-            var dictionary = new Dictionary<int, int> { [1] = 2, [3] = 4 };
+            var dictionary = new Dictionary<int, int> {[1] = 2, [3] = 4};
 
             DictionaryInspector.EnumerateSimpleDictionary(dictionary)
-                .Should().BeEquivalentTo(("1", 2), ("3", 4));
+                .Should()
+                .BeEquivalentTo(("1", 2), ("3", 4));
         }
 
         [Test]
         public void EnumerateSimpleDictionary_should_correctly_enumerate_a_readonly_dictionary()
         {
-            var dictionary = new Dictionary<int, int> { [1] = 2, [3] = 4 };
+            var dictionary = new Dictionary<int, int> {[1] = 2, [3] = 4};
             var roDictionary = new ReadOnlyDictionary<int, int>(dictionary);
 
             DictionaryInspector.EnumerateSimpleDictionary(roDictionary)
-                .Should().BeEquivalentTo(("1", 2), ("3", 4));
+                .Should()
+                .BeEquivalentTo(("1", 2), ("3", 4));
         }
 
         [Test]
         public void EnumerateSimpleDictionary_should_correctly_enumerate_a_concurrent_dictionary()
         {
-            var dictionary = new ConcurrentDictionary<int, int> { [1] = 2, [3] = 4 };
+            var dictionary = new ConcurrentDictionary<int, int> {[1] = 2, [3] = 4};
 
             DictionaryInspector.EnumerateSimpleDictionary(dictionary)
-                .Should().BeEquivalentTo(("1", 2), ("3", 4));
+                .Should()
+                .BeEquivalentTo(("1", 2), ("3", 4));
         }
     }
 }

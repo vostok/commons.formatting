@@ -13,7 +13,7 @@ namespace Vostok.Commons.Formatting.Tests
         [Test]
         public void Should_extract_properties_from_an_anonymous_object()
         {
-            ObjectPropertiesExtractor.ExtractProperties(new { A = 1, B = 2 })
+            ObjectPropertiesExtractor.ExtractProperties(new {A = 1, B = 2})
                 .Should()
                 .BeEquivalentTo(("A", 1), ("B", 2));
         }
@@ -30,21 +30,24 @@ namespace Vostok.Commons.Formatting.Tests
         public void Should_not_extract_private_properties()
         {
             ObjectPropertiesExtractor.ExtractProperties(new PrivateProperty())
-                .Should().BeEmpty();
+                .Should()
+                .BeEmpty();
         }
 
         [Test]
         public void Should_not_extract_public_fields()
         {
             ObjectPropertiesExtractor.ExtractProperties(new PublicField())
-                .Should().BeEmpty();
+                .Should()
+                .BeEmpty();
         }
 
         [Test]
         public void Should_not_extract_private_fields()
         {
             ObjectPropertiesExtractor.ExtractProperties(new PrivateField())
-                .Should().BeEmpty();
+                .Should()
+                .BeEmpty();
         }
 
         [Test]
@@ -58,7 +61,7 @@ namespace Vostok.Commons.Formatting.Tests
         [Test]
         public void Should_support_properties_that_differ_by_case_only()
         {
-            ObjectPropertiesExtractor.ExtractProperties(new { A = 1, a = 2 })
+            ObjectPropertiesExtractor.ExtractProperties(new {A = 1, a = 2})
                 .Should()
                 .BeEquivalentTo(("A", 1), ("a", 2));
         }
