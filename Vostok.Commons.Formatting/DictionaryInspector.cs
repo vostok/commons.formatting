@@ -68,7 +68,8 @@ namespace Vostok.Commons.Formatting
 
         private static bool IsSimpleKeyType(Type type) => type.IsPrimitive ||
                                                           type.IsEnum ||
-                                                          type == typeof(string);
+                                                          type == typeof(string) ||
+                                                          type == typeof(Guid);
 
         private struct DictionaryInfo
         {
