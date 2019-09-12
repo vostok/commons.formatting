@@ -16,6 +16,7 @@ namespace Vostok.Commons.Formatting.Tests
             DictionaryInspector.IsSimpleDictionary(typeof(Dictionary<int, string>)).Should().BeTrue();
             DictionaryInspector.IsSimpleDictionary(typeof(Dictionary<char, string>)).Should().BeTrue();
             DictionaryInspector.IsSimpleDictionary(typeof(Dictionary<double, string>)).Should().BeTrue();
+            DictionaryInspector.IsSimpleDictionary(typeof(Dictionary<Guid, string>)).Should().BeTrue();
         }
 
         [Test]
