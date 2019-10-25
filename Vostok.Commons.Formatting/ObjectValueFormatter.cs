@@ -63,6 +63,8 @@ namespace Vostok.Commons.Formatting
 
             if (value is string str)
                 writer.Write(str);
+            else if (value is TimeSpan timeSpan && format == "Pretty")
+                writer.Write(timeSpan.ToPrettyString());
             else if (value is IFormattable formattable)
                 writer.Write(formattable.ToString(format, formatProvider ?? CultureInfo.InvariantCulture));
             else if (HasCustomToString(valueType = value.GetType()))
