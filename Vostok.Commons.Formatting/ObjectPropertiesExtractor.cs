@@ -13,7 +13,7 @@ namespace Vostok.Commons.Formatting
     [PublicAPI]
     internal static class ObjectPropertiesExtractor
     {
-        private const int CacheCapacity = 1000;
+        private const int CacheCapacity = 10000;
 
         private static readonly RecyclingBoundedCache<Type, (string name, Func<object, object> getter)[]> Cache =
             new RecyclingBoundedCache<Type, (string name, Func<object, object> getter)[]>(CacheCapacity);
