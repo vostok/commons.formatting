@@ -9,7 +9,7 @@ namespace Vostok.Commons.Formatting
     [PublicAPI]
     internal static class ToStringDetector
     {
-        private const int CacheCapacity = 1000;
+        private const int CacheCapacity = 10000;
 
         private static readonly RecyclingBoundedCache<Type, bool> Cache =
             new RecyclingBoundedCache<Type, bool>(CacheCapacity);
