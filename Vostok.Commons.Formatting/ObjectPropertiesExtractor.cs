@@ -19,7 +19,10 @@ namespace Vostok.Commons.Formatting
             new RecyclingBoundedCache<Type, (string name, Func<object, object> getter)[]>(CacheCapacity);
 
         public static bool HasProperties(Type type) =>
-            Cache.Obtain(type, obj => LocateProperties(obj)).Length > 0;
+            GetPropertiesCount(type) > 0;
+
+        public static int GetPropertiesCount(Type type) =>
+            Cache.Obtain(type, obj => LocateProperties(obj)).Length;
 
         public static IEnumerable<(string, object)> ExtractProperties(object @object)
         {
