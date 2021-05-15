@@ -30,6 +30,19 @@ namespace Vostok.Commons.Formatting
                 yield return (name, ObtainPropertyValue(@object, getter));
         }
 
+        public static (string, object)[] ExtractPropertiesArray(object @object)
+        {
+            var getters = Cache.Obtain(@object.GetType(), obj => LocateProperties(obj));
+            var resultArray = new (string, object)[getters.Length];
+            for (var i = 0; i < resultArray.Length; i++)
+            {
+                var getter = getters[i];
+                resultArray[i] = (getter.name, ObtainPropertyValue(@object, getter.getter));
+            }
+
+            return resultArray;
+        }
+
         private static (string, Func<object, object>)[] LocateProperties(Type type)
         {
             try
