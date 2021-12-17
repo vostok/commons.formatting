@@ -75,7 +75,8 @@ namespace Vostok.Commons.Formatting.Tests
         public void TryGetCustomToString_should_find_with_culture_method()
         {
             var c = new MyClass();
-            ToStringDetector.TryGetCustomToString(c.GetType()).Invoke(c).Should().Be("B");
+            ToStringDetector.TryInvokeCustomToString(c.GetType(), c, out var result).Should().BeTrue();
+            result.Should().Be("B");
         }
         
         private enum EnumExample

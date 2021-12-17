@@ -17,9 +17,20 @@ namespace Vostok.Commons.Formatting
 
         public static bool HasCustomToString(Type type) =>
             TryGetCustomToString(type) != null;
+
+        public static bool TryInvokeCustomToString(Type type, object item, out string result)
+        {
+            result = null;
+            
+            var toString = TryGetCustomToString(type);
+            if (toString == null)
+                return false;
+
+            result = toString(item);
+            return true;
+        }
         
-        [CanBeNull]
-        public static Func<object, string> TryGetCustomToString(Type type) =>
+        private static Func<object, string> TryGetCustomToString(Type type) =>
             Cache.Obtain(type, t => TryGetCustomToStringInternal(t));
 
         private static Func<object, string> TryGetCustomToStringInternal(Type type)
