@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using System.Net;
 using FluentAssertions;
 using NUnit.Framework;
@@ -70,6 +71,13 @@ namespace Vostok.Commons.Formatting.Tests
             ToStringDetector.HasCustomToString(typeof(IFormattable)).Should().BeFalse();
         }
 
+        [Test]
+        public void TryGetCustomToString_should_find_with_culture_method()
+        {
+            var c = new MyClass();
+            ToStringDetector.TryGetCustomToString(c.GetType()).Invoke(c).Should().Be("B");
+        }
+        
         private enum EnumExample
         {
         }
@@ -90,6 +98,12 @@ namespace Vostok.Commons.Formatting.Tests
 
         private struct ValueTypeWithoutToString
         {
+        }
+
+        private class MyClass
+        {
+            public override string ToString() => "A";
+            public string ToString(CultureInfo cultureInfo) => "B";
         }
     }
 }
