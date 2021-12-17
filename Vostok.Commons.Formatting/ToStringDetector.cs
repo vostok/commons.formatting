@@ -1,4 +1,5 @@
 using System;
+using System.Globalization;
 using JetBrains.Annotations;
 using Vostok.Commons.Collections;
 
@@ -11,26 +12,37 @@ namespace Vostok.Commons.Formatting
     {
         private const int CacheCapacity = 10000;
 
-        private static readonly RecyclingBoundedCache<Type, bool> Cache =
-            new RecyclingBoundedCache<Type, bool>(CacheCapacity);
+        private static readonly RecyclingBoundedCache<Type, Func<object, string>> Cache =
+            new RecyclingBoundedCache<Type, Func<object, string>>(CacheCapacity);
 
         public static bool HasCustomToString(Type type) =>
-            Cache.Obtain(type, t => HasCustomToStringInternal(t));
+            TryGetCustomToString(type) != null;
+        
+        [CanBeNull]
+        public static Func<object, string> TryGetCustomToString(Type type) =>
+            Cache.Obtain(type, t => TryGetCustomToStringInternal(t));
 
-        private static bool HasCustomToStringInternal(Type type)
+        private static Func<object, string> TryGetCustomToStringInternal(Type type)
         {
-            var toStringMethod = type.GetMethod("ToString", Array.Empty<Type>());
-            if (toStringMethod == null)
-                return false;
-
             // (iloktionov): Reject anonymous types:
             if (type.Name.StartsWith("<>"))
-                return false;
+                return null;
+            
+            var toStringMethod = type.GetMethod("ToString", new []{typeof(CultureInfo)})
+                                 ?? type.GetMethod("ToString", Array.Empty<Type>());
+            
+            if (toStringMethod == null)
+                return null;
 
             var declaringType = toStringMethod.DeclaringType;
 
-            return declaringType != typeof(object) &&
-                   declaringType != typeof(ValueType);
+            if (declaringType == typeof(object) || declaringType == typeof(ValueType))
+                return null;
+
+            if (toStringMethod.GetParameters().Length == 1)
+                return o => (string)toStringMethod.Invoke(o, new []{CultureInfo.InvariantCulture});
+                
+            return o => o.ToString();
         }
     }
 }
