@@ -8,6 +8,7 @@ using Vostok.Commons.Collections;
 
 namespace Vostok.Commons.Formatting
 {
+    [PublicAPI]
     internal static class ParseMethodFinder
     {
         private const int CacheCapacity = 1000;

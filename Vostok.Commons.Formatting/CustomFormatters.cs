@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using System.Net;
 using System.Text;
+using JetBrains.Annotations;
 
 namespace Vostok.Commons.Formatting
 {
+    [PublicAPI]
     internal static class CustomFormatters
     {
         private static readonly Dictionary<Type, Func<object, string>> Formatters

@@ -1,3 +1,7 @@
+## 0.1.4 (27-12-2021):
+
+Added `TryInvokeCustomToString` and new `CustomFormatters`.
+
 ## 0.1.3 (06-12-2021):
 
 Added `net6.0` target.
