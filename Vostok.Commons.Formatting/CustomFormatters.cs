@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Net;
 using System.Text;
 
 namespace Vostok.Commons.Formatting
@@ -9,7 +10,12 @@ namespace Vostok.Commons.Formatting
         private static readonly Dictionary<Type, Func<object, string>> Formatters
             = new Dictionary<Type, Func<object, string>>
             {
-                [typeof(Encoding)] = value => ((Encoding)value).WebName
+                [typeof(string)] = value => (string)value,
+                [typeof(Uri)] = value => value.ToString(),
+                [typeof(Enum)] = value => value.ToString(),
+                [typeof(IPEndPoint)] = value => value.ToString(),
+                [typeof(Encoding)] = value => ((Encoding)value).WebName,
+                [typeof(DateTimeOffset)] = value => ((DateTimeOffset)value).ToString("o")
             };
 
         public static bool TryFormat(object item, out string s)
