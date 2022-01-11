@@ -13,57 +13,103 @@ namespace Vostok.Commons.Formatting.Tests
         [Test]
         public void Should_extract_properties_from_an_anonymous_object()
         {
-            ObjectPropertiesExtractor.ExtractProperties(new {A = 1, B = 2})
+            var obj = new {A = 1, B = 2};
+
+            ObjectPropertiesExtractor.ExtractProperties(obj)
                 .Should()
                 .BeEquivalentTo(("A", 1), ("B", 2));
+
+            var (count, props) = ObjectPropertiesExtractor.ExtractPropertiesWithCount(obj);
+            count.Should().Be(2);
+            props.Should()
+                .BeEquivalentTo(ObjectPropertiesExtractor.ExtractProperties(obj));
         }
 
         [Test]
         public void Should_extract_properties_from_a_custom_object()
         {
-            ObjectPropertiesExtractor.ExtractProperties(new Container())
+            var obj = new Container();
+
+            ObjectPropertiesExtractor.ExtractProperties(obj)
                 .Should()
                 .BeEquivalentTo(("A", 1), ("B", 2));
+
+            var (count, props) = ObjectPropertiesExtractor.ExtractPropertiesWithCount(obj);
+            count.Should().Be(2);
+            props.Should()
+                .BeEquivalentTo(ObjectPropertiesExtractor.ExtractProperties(obj));
         }
 
         [Test]
         public void Should_not_extract_private_properties()
         {
-            ObjectPropertiesExtractor.ExtractProperties(new PrivateProperty())
+            var obj = new PrivateProperty();
+
+            ObjectPropertiesExtractor.ExtractProperties(obj)
                 .Should()
                 .BeEmpty();
+
+            var (count, props) = ObjectPropertiesExtractor.ExtractPropertiesWithCount(obj);
+            count.Should().Be(0);
+            props.Should().BeEmpty();
         }
 
         [Test]
         public void Should_not_extract_public_fields()
         {
-            ObjectPropertiesExtractor.ExtractProperties(new PublicField())
+            var obj = new PublicField();
+
+            ObjectPropertiesExtractor.ExtractProperties(obj)
                 .Should()
                 .BeEmpty();
+
+            var (count, props) = ObjectPropertiesExtractor.ExtractPropertiesWithCount(obj);
+            count.Should().Be(0);
+            props.Should().BeEmpty();
         }
 
         [Test]
         public void Should_not_extract_private_fields()
         {
-            ObjectPropertiesExtractor.ExtractProperties(new PrivateField())
+            var obj = new PrivateField();
+
+            ObjectPropertiesExtractor.ExtractProperties(obj)
                 .Should()
                 .BeEmpty();
+
+            var (count, props) = ObjectPropertiesExtractor.ExtractPropertiesWithCount(obj);
+            count.Should().Be(0);
+            props.Should().BeEmpty();
         }
 
         [Test]
         public void Should_return_error_messages_as_values_for_failing_properties()
         {
-            ObjectPropertiesExtractor.ExtractProperties(new ThrowingProperty())
+            var obj = new ThrowingProperty();
+
+            ObjectPropertiesExtractor.ExtractProperties(obj)
                 .Should()
                 .Equal(("A", "<error: 123>"));
+
+            var (count, props) = ObjectPropertiesExtractor.ExtractPropertiesWithCount(obj);
+            count.Should().Be(1);
+            props.Should()
+                .BeEquivalentTo(ObjectPropertiesExtractor.ExtractProperties(obj));
         }
 
         [Test]
         public void Should_support_properties_that_differ_by_case_only()
         {
-            ObjectPropertiesExtractor.ExtractProperties(new {A = 1, a = 2})
+            var obj = new {A = 1, a = 2};
+
+            ObjectPropertiesExtractor.ExtractProperties(obj)
                 .Should()
                 .BeEquivalentTo(("A", 1), ("a", 2));
+
+            var (count, props) = ObjectPropertiesExtractor.ExtractPropertiesWithCount(obj);
+            count.Should().Be(2);
+            props.Should()
+                .BeEquivalentTo(ObjectPropertiesExtractor.ExtractProperties(obj));
         }
 
         private class Container
