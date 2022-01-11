@@ -30,6 +30,18 @@ namespace Vostok.Commons.Formatting
                 yield return (name, ObtainPropertyValue(@object, getter));
         }
 
+        public static (int, IEnumerable<(string, object)>) ExtractPropertiesWithCount(object @object)
+        {
+            var pairs = Cache.Obtain(@object.GetType(), obj => LocateProperties(obj));
+            return (pairs.Length, Get(@object, pairs));
+        }
+
+        private static IEnumerable<(string, object)> Get(object @object, (string name, Func<object, object> getter)[] pairs)
+        {
+            foreach (var (name, getter) in pairs)
+                yield return (name, ObtainPropertyValue(@object, getter));
+        }
+
         private static (string, Func<object, object>)[] LocateProperties(Type type)
         {
             try
