@@ -1,6 +1,6 @@
 ## 0.1.5 (25-01-2022):
 
-Increaced max object rendered deep from 3 to 10.
+Increased max object rendered deep from 3 to 10.
 
 ## 0.1.4 (27-12-2021):
 
