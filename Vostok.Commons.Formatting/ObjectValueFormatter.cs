@@ -15,7 +15,7 @@ namespace Vostok.Commons.Formatting
     internal static class ObjectValueFormatter
     {
         private const int StringBuilderCapacity = 64;
-        private const int MaximumRecursionDepth = 3;
+        private const int MaximumRecursionDepth = 10;
 
         /// <inheritdoc cref="Format(TextWriter,object,string,IFormatProvider)"/>
         public static string Format(
