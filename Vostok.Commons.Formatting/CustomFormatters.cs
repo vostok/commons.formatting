@@ -27,7 +27,7 @@ namespace Vostok.Commons.Formatting
             s = null;
             var itemType = item.GetType();
 
-            foreach (var pair in Formatters)
+            foreach (var pair in formatters)
             {
                 if (pair.Key.IsAssignableFrom(itemType))
                 {
