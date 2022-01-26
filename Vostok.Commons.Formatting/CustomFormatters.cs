@@ -20,7 +20,9 @@ namespace Vostok.Commons.Formatting
                 [typeof(DateTimeOffset)] = value => ((DateTimeOffset)value).ToString("o")
             };
 
-        public static bool TryFormat(object item, out string s)
+        public static bool TryFormat(object item, out string s) => TryFormatWithExplicitFormatters(item, Formatters, out s);
+
+        public static bool TryFormatWithExplicitFormatters(object item, Dictionary<Type, Func<object, string>> formatters, out string s)
         {
             s = null;
             var itemType = item.GetType();
