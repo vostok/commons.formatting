@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net;
 using System.Text;
 using JetBrains.Annotations;
@@ -17,7 +18,8 @@ namespace Vostok.Commons.Formatting
                 [typeof(Enum)] = value => value.ToString(),
                 [typeof(IPEndPoint)] = value => value.ToString(),
                 [typeof(Encoding)] = value => ((Encoding)value).WebName,
-                [typeof(DateTimeOffset)] = value => ((DateTimeOffset)value).ToString("o")
+                [typeof(DateTimeOffset)] = value => ((DateTimeOffset)value).ToString("o"),
+                [typeof(IEnumerable<byte>)] = value => Convert.ToBase64String(((IEnumerable<byte>)value).ToArray()) 
             };
 
         public static bool TryFormat(object item, out string s)

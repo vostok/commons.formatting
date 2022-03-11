@@ -1,4 +1,4 @@
-## 0.1.6 (11-03-2022):
+## 0.1.7 (11-03-2022):
 
 Format bytes array to base64 string. 
 
