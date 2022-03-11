@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
+using System.Linq;
 using JetBrains.Annotations;
 
 namespace Vostok.Commons.Formatting
@@ -69,6 +70,8 @@ namespace Vostok.Commons.Formatting
                 writer.Write(value.ToString());
             else if (IsSimpleDictionary(valueType))
                 FormatDictionaryAsJson(writer, value, 1);
+            else if (value is IEnumerable<byte> bytes)
+                writer.Write(Convert.ToBase64String(bytes.ToArray()));
             else if (value is IEnumerable enumerable)
                 FormatSequenceAsJson(writer, enumerable, 1);
             else if (HasPublicProperties(valueType))

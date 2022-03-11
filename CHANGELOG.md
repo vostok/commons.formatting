@@ -1,3 +1,7 @@
+## 0.1.6 (11-03-2022):
+
+Format bytes array to base64 string. 
+
 ## 0.1.5 (25-01-2022):
 
 Increased max object rendered deep from 3 to 10.
