@@ -1,3 +1,7 @@
+## 0.1.8 (13-04-2022):
+
+Added `MessageTemplateEscaper` static class.
+
 ## 0.1.7 (11-03-2022):
 
 Format bytes array to base64 string. 
