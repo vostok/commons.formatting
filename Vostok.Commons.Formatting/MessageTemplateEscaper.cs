@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using System.Runtime.CompilerServices;
+using System.Text;
 using JetBrains.Annotations;
 
 namespace Vostok.Commons.Formatting
@@ -9,7 +10,13 @@ namespace Vostok.Commons.Formatting
     [PublicAPI]
     internal class MessageTemplateEscaper
     {
-        public static string Escape(string template)
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static string Escape(string template) =>
+            template.Contains("{") || template.Contains("}") 
+                ? EscapeInner(template) 
+                : template;
+
+        private static string EscapeInner(string template)
         {
             var stringBuilder = new StringBuilder();
 
