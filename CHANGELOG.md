@@ -1,3 +1,7 @@
+## 0.1.9 (14-04-2022):
+
+Removed unnecessary allocations in `MessageTemplateEscaper`.
+
 ## 0.1.8 (13-04-2022):
 
 Added `MessageTemplateEscaper` static class.
