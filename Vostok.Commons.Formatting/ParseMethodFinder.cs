@@ -33,8 +33,8 @@ namespace Vostok.Commons.Formatting
         [CanBeNull]
         private static MethodInfo FindParseMethodInternal([NotNull] Type type)
             => type
-                .GetMethods(BindingFlags.Public | BindingFlags.Static)
-                .Where(method => method.Name == nameof(int.Parse))
+                .GetMethods(BindingFlags.Public | BindingFlags.Static | BindingFlags.FlattenHierarchy)
+                .Where(method => method.Name == "Parse")
                 .Where(method => method.ReturnType == type)
                 .Where(method => !method.IsGenericMethod)
                 .Where(method => method.GetParameters().Length == 1)
@@ -44,8 +44,8 @@ namespace Vostok.Commons.Formatting
         [CanBeNull]
         private static MethodInfo FindTryParseMethodInternal([NotNull] Type type)
             => type
-                .GetMethods(BindingFlags.Public | BindingFlags.Static)
-                .Where(method => method.Name == nameof(int.TryParse))
+                .GetMethods(BindingFlags.Public | BindingFlags.Static | BindingFlags.FlattenHierarchy)
+                .Where(method => method.Name == "TryParse")
                 .Where(method => method.ReturnType == typeof(bool))
                 .Where(method => !method.IsGenericMethod)
                 .Where(method => method.GetParameters().Length == 2)
