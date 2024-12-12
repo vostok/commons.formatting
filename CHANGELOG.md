@@ -1,3 +1,7 @@
+## 0.1.10 (12-12-2024): 
+
+Bump NuGet deps versions
+
 ## 0.1.9 (14-04-2022):
 
 Removed unnecessary allocations in `MessageTemplateEscaper`.
